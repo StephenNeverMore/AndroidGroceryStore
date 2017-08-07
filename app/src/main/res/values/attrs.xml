@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<declare-styleable name="SwipeItemLayout">
+    <attr name="font_layout" format="reference" />
+    <attr name="swipe_offset" format="dimension" />
+</declare-styleable>
+</resources>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context="com.stephen.aty.OpenTopActivity">
+
+    <TextView
+        android:id="@+id/tv_open_accessibility"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:text="打开辅助功能"
+        android:visibility="gone"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:background="@drawable/btn_ripple_selector"
+        tools:visibility="visible"/>
+
+    <TextView
+        android:id="@+id/tv_tips"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:gravity="center"/>
+</LinearLayout>
