@@ -4,7 +4,9 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.Context;
+import android.graphics.PointF;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
@@ -22,6 +24,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.stephen.R;
+import com.stephen.evaluator.BezierEvaluator;
 import com.stephen.util.DimenUtils;
 
 
@@ -86,16 +89,56 @@ public class HeartView extends View {
         params.gravity = Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL;
         return params;
     }
+
     private void addHeart() {
         if (mParent != null) {
             final Context context = getContext();
             ImageView heartView = new ImageView(context);
             heartView.setImageDrawable(getHeartDrawable(context));
             mParent.addView(heartView, getHeartLayoutParams());
-            startAnim(heartView);
+//            startAnim(heartView);
+            startBezierAnim(heartView);
         }
     }
 
+    /**
+     * 通过贝塞尔曲线 + TypeEvaluator实现动画
+     * @param heartView
+     */
+    private void startBezierAnim(final ImageView heartView) {
+        final ValueAnimator bezierAnimator = getBezierAnimator(heartView);
+        bezierAnimator.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                if (mParent != null) {
+                    mParent.removeView(heartView);
+                }
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+                if (mParent != null) {
+                    mParent.removeView(heartView);
+                }
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+        bezierAnimator.start();
+    }
+
+    /**
+     * 通过普通的ObjectAnimator 实现动画
+     * @param heartView
+     */
     private void startAnim(final ImageView heartView) {
         AnimatorSet set = new AnimatorSet();
         set.playTogether(getAlphaAnimator(heartView),
@@ -113,6 +156,29 @@ public class HeartView extends View {
             }
         });
         set.start();
+    }
+
+    private ValueAnimator getBezierAnimator(final ImageView heartView) {
+        //tow controller points
+        PointF pointF2 = new PointF(getWidth() / 4, getHeight() / 4);
+        PointF pointF1 = new PointF(getWidth() * 3 / 4, getHeight() * 3 / 4);
+        // start point and end point
+        PointF pointF0 = new PointF((getWidth() - heartView.getWidth()) / 2, getHeight() - heartView.getHeight());
+        PointF pointF3 = new PointF((getWidth() - heartView.getWidth()) / 2, 0);
+        BezierEvaluator evaluator = new BezierEvaluator(pointF1, pointF2);
+        ValueAnimator animator = ValueAnimator.ofObject(evaluator, pointF0, pointF3);
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                PointF pointF = (PointF) animation.getAnimatedValue();
+                heartView.setX(pointF.x);
+                heartView.setY(pointF.y);
+                heartView.setAlpha(1 - animation.getAnimatedFraction() + 0.1f);
+            }
+        });
+        animator.setTarget(heartView);
+        animator.setDuration(3000);
+        return animator;
     }
 
 
@@ -155,7 +221,7 @@ public class HeartView extends View {
         @Override
         public void run() {
             addHeart();
-            if (isRunning){
+            if (isRunning) {
                 postDelayed(this, 500);
             }
         }
