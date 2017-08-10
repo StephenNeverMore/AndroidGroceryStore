@@ -14,6 +14,8 @@ public class WaveAty extends Activity implements SeekBar.OnSeekBarChangeListener
     WaveView waveView;
     SeekBar seekBar;
     SeekBar seekBar2;
+    SeekBar seekBar3;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,16 +27,19 @@ public class WaveAty extends Activity implements SeekBar.OnSeekBarChangeListener
         seekBar2 = (SeekBar) findViewById(R.id.seek_bar2);
         seekBar2.setOnSeekBarChangeListener(this);
         seekBar2.setProgress(1);
+        seekBar3 = (SeekBar) findViewById(R.id.seek_bar3);
+        seekBar3.setOnSeekBarChangeListener(this);
+        seekBar3.setProgress(50);
     }
 
     public void startWave(View view) {
         if (waveView != null) {
             if (waveView.isWaving()) {
                 waveView.stopWave();
-                ((Button)view).setText("START WAVE");
+                ((Button) view).setText("START WAVE");
             } else {
                 waveView.startWave();
-                ((Button)view).setText("STOP WAVE");
+                ((Button) view).setText("STOP WAVE");
             }
         }
     }
@@ -45,9 +50,13 @@ public class WaveAty extends Activity implements SeekBar.OnSeekBarChangeListener
             if (waveView != null) {
                 waveView.setWaveHeight(progress);
             }
-        } else if (seekBar.getId() == R.id.seek_bar2){
-            if (waveView != null){
+        } else if (seekBar.getId() == R.id.seek_bar2) {
+            if (waveView != null) {
                 waveView.setWaveCount(progress / 10);
+            }
+        } else if (seekBar.getId() == R.id.seek_bar3) {
+            if (waveView != null) {
+                waveView.setWaterHeightProgress(progress);
             }
         }
     }

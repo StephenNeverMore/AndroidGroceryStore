@@ -22,13 +22,15 @@ import com.stephen.util.LogUtils;
 public class WaveView extends View {
     private static final int DEFAULT_WAVE_COUNT = 2;
     private static final int DEFAULT_WAVE_HEIGHT = 100;
-    private Paint mPaint;
+    private static final int DEFAULT_WATER_HEIGHT = 50;
     private int count = DEFAULT_WAVE_COUNT;
+    private float waveWidth;
     private int waveHeight = DEFAULT_WAVE_HEIGHT;
+    private float waterHeightProgress = DEFAULT_WATER_HEIGHT;
     private float width;
     private float height;
-    Path wavePath;
-    private float waveWidth;
+    private Paint mPaint;
+    private Path wavePath;
     private float offset = 0;
     private ValueAnimator animator;
     private boolean isWaving = false;
@@ -74,18 +76,20 @@ public class WaveView extends View {
             width = getWidth();
             height = getHeight();
         }
+        float waterHeight = height * (1- waterHeightProgress / 100);
+        LogUtils.e(" -- waterHeight = " + waterHeight);
         waveWidth = width / count;// wave's width
-        final float upControlY = height / 2 - waveHeight;
-        final float downControlY = height / 2 + waveHeight;
+        final float upControlY = waterHeight - waveHeight;
+        final float downControlY = waterHeight + waveHeight;
         offset *= width;
-        wavePath.moveTo(-width + offset, height / 2);
+        wavePath.moveTo(-width + offset, waterHeight);
         for (int i = count - 1; i >= 0; i--) {
-            wavePath.quadTo(-i * waveWidth - waveWidth * 3 / 4 + offset, upControlY, -i * waveWidth - waveWidth / 2 + offset, height / 2);
-            wavePath.quadTo(-i * waveWidth - waveWidth / 4 + offset, downControlY, -i * waveWidth + offset, height / 2);
+            wavePath.quadTo(-i * waveWidth - waveWidth * 3 / 4 + offset, upControlY, -i * waveWidth - waveWidth / 2 + offset, waterHeight);
+            wavePath.quadTo(-i * waveWidth - waveWidth / 4 + offset, downControlY, -i * waveWidth + offset, waterHeight);
         }
         for (int i = 0; i < count; i++) {
-            wavePath.quadTo(i * waveWidth + waveWidth / 4 + offset, upControlY, i * waveWidth + waveWidth / 2 + offset, height / 2);
-            wavePath.quadTo(i * waveWidth + waveWidth * 3 / 4 + offset, downControlY, i * waveWidth + waveWidth + offset, height / 2);
+            wavePath.quadTo(i * waveWidth + waveWidth / 4 + offset, upControlY, i * waveWidth + waveWidth / 2 + offset, waterHeight);
+            wavePath.quadTo(i * waveWidth + waveWidth * 3 / 4 + offset, downControlY, i * waveWidth + waveWidth + offset, waterHeight);
         }
         wavePath.lineTo(width, height);
         wavePath.lineTo(-width, height);
@@ -115,12 +119,16 @@ public class WaveView extends View {
         this.waveHeight = height;
         invalidate();
     }
-    public void setWaveCount(int count){
-        if (count <= 0){
+
+    public void setWaveCount(int count) {
+        if (count <= 0) {
             return;
         }
         this.count = count;
-        LogUtils.e(" -- count = " + count);
         invalidate();
+    }
+
+    public void setWaterHeightProgress(float waterHeightProgress) {
+        this.waterHeightProgress = waterHeightProgress;
     }
 }

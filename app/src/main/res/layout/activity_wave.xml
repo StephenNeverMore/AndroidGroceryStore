@@ -31,9 +31,16 @@
 
         <SeekBar
             android:id="@+id/seek_bar2"
-            android:layout_marginTop="8dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp" />
+
+        <SeekBar
+            android:id="@+id/seek_bar3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:progress="50"/>
     </LinearLayout>
 
 </FrameLayout>
