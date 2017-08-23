@@ -8,20 +8,30 @@
     tools:context="com.stephen.aty.OpenTopActivity">
 
     <TextView
+        android:id="@+id/tv_open_float"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/btn_bg"
+        android:gravity="center"
+        android:text="打开悬浮窗权限"
+        android:textSize="20dp" />
+
+    <TextView
         android:id="@+id/tv_open_accessibility"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:text="打开辅助功能"
-        android:visibility="gone"
-        android:textSize="20dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/btn_bg"
         android:gravity="center"
-        android:background="@drawable/btn_ripple_selector"
-        tools:visibility="visible"/>
+        android:text="打开辅助功能"
+        android:textSize="20dp"/>
 
     <TextView
         android:id="@+id/tv_tips"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/btn_bg"
+        android:textSize="20dp" />
 </LinearLayout>

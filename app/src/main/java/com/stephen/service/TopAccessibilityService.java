@@ -3,7 +3,9 @@ package com.stephen.service;
 import android.accessibilityservice.AccessibilityService;
 import android.view.accessibility.AccessibilityEvent;
 
+import com.stephen.aty.OpenTopActivity;
 import com.stephen.bean.TopEvent;
+import com.stephen.util.CommonUtils;
 import com.stephen.util.LogUtils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -36,6 +38,7 @@ public class TopAccessibilityService extends AccessibilityService {
         super.onServiceConnected();
         LogUtils.e(" TopAccessibilityService ---> onServiceConnected --> connected successfully --- start show cover ");
         CoverService.startService(this);
+        CommonUtils.startAtyAndClearTop(this, OpenTopActivity.class);
     }
 
 

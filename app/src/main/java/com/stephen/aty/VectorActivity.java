@@ -1,10 +1,8 @@
 package com.stephen.aty;
 
+import android.app.Activity;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -12,7 +10,7 @@ import android.widget.ImageView;
 import com.stephen.R;
 
 
-public class VectorActivity extends AppCompatActivity {
+public class VectorActivity extends Activity {
 
     ImageView imageView;
 
@@ -29,7 +27,6 @@ public class VectorActivity extends AppCompatActivity {
     }
 
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void startSearchBar(View view) {
         view.setSelected(!view.isSelected());
         final Drawable drawable = ((ImageView)view).getDrawable();
