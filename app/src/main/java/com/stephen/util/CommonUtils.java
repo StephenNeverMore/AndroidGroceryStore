@@ -1,10 +1,17 @@
 package com.stephen.util;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.os.Build;
 import android.provider.Settings;
 import android.text.TextUtils;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 
 /**
  * @author zhushuang
@@ -119,4 +126,44 @@ public class CommonUtils {
         }
         return bResult;
     }
+
+    public static void setStatusBarColor(Activity activity, View statusBar, int color) {
+        if (activity == null || activity.isFinishing()) {
+            return;
+        }
+        final int statusBarHeight = getStatusBarHeight(activity);
+        final Window window = activity.getWindow();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {// 4.4 - 5.0
+            if (statusBar != null) {
+                statusBar.setBackgroundColor(color);
+                final ViewGroup.LayoutParams layoutParams = statusBar.getLayoutParams();
+                layoutParams.height = statusBarHeight;
+                statusBar.setLayoutParams(layoutParams);
+                statusBar.setVisibility(View.VISIBLE);
+            }
+            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) { //5.0 and above
+            if (statusBar != null) {
+                final ViewGroup.LayoutParams layoutParams = statusBar.getLayoutParams();
+                layoutParams.height = statusBarHeight;
+                statusBar.setLayoutParams(layoutParams);
+                statusBar.setVisibility(View.VISIBLE);
+            }
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Color.TRANSPARENT);
+        }
+    }
+
+    public static int getStatusBarHeight(final Context context) {
+        int result = 0;
+        int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = context.getResources().getDimensionPixelSize(resourceId);
+        }
+        return result;
+    }
+
 }

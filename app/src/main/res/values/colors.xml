@@ -7,4 +7,5 @@
     <color name="ripple_write_press">#66FFFFFF</color>
     <color name="ripple_write">#AAFFFFFF</color>
     <color name="text_black">#FF000000</color>
+    <color name="tool_bar_color">#FF4480F7</color>
 </resources>
