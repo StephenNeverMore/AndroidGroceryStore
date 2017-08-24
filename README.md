@@ -23,3 +23,5 @@ an android project like a grocery store
 ![image](https://github.com/StephenNeverMore/AndroidGroceryStore/blob/master/gif/wave.gif)
 
 ![image](https://github.com/StephenNeverMore/AndroidGroceryStore/blob/master/gif/bezier.gif)
+
+![image](https://github.com/StephenNeverMore/AndroidGroceryStore/blob/master/gif/reveal.gif)
