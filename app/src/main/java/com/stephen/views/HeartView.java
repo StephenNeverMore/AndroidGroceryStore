@@ -75,7 +75,7 @@ public class HeartView extends View {
     }
 
     private Drawable getHeartDrawable(Context context) {
-        final VectorDrawableCompat drawableCompat = VectorDrawableCompat.create(context.getResources(), R.drawable.cmlocker_wallpaper_icon_like, null);
+        final VectorDrawableCompat drawableCompat = VectorDrawableCompat.create(context.getResources(), R.drawable.icon_like, null);
         drawableCompat.setTint(sColors[mColorIndex++ % sColors.length]);
         return drawableCompat.mutate();
     }

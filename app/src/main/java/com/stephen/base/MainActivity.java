@@ -14,6 +14,7 @@ import com.stephen.R;
 import com.stephen.aty.BubbleAty;
 import com.stephen.aty.HeartActivity;
 import com.stephen.aty.OpenTopActivity;
+import com.stephen.aty.RevealActivity;
 import com.stephen.aty.WaveAty;
 import com.stephen.util.CommonUtils;
 
@@ -74,5 +75,8 @@ public class MainActivity extends AppCompatActivity {
         startNewAty(this, BubbleAty.class);
     }
 
+    public void toRevealAty(View view) {
+        startNewAty(this, RevealActivity.class);
+    }
 
 }

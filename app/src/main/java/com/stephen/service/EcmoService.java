@@ -38,12 +38,12 @@ public class EcmoService extends Service {
             return;
         }
         try {
-            Drawable drawable = context.getResources().getDrawable(R.drawable.cmlauncher_smart_screen_logo);
+            Drawable drawable = context.getResources().getDrawable(R.drawable.logo);
             if (null == drawable) {
                 LogUtils.e(" EcmoService --> startEcmoServiceNotification -- drawable is null");
                 return;
             }
-            Notification note = tryCreateNotification(context, R.drawable.cmlauncher_smart_screen_logo);
+            Notification note = tryCreateNotification(context, R.drawable.logo);
             if (null == note) {
                 LogUtils.e(" EcmoService --> startEcmoServiceNotification -- note is null");
                 return;
