@@ -16,6 +16,9 @@ an android project like a grocery store
 ## 沉浸式状态栏
 适配高低版本的状态栏沉浸式的实现
 
+## 扩散/收缩布局动画
+RevealFrameLayout RevealImageView
+
 ![image](https://github.com/StephenNeverMore/AndroidGroceryStore/blob/master/gif/heartview.gif)
 
 ![image](https://github.com/StephenNeverMore/AndroidGroceryStore/blob/master/gif/currentAty.gif)
