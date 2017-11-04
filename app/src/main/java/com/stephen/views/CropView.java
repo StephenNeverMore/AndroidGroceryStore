@@ -1,4 +1,4 @@
-package com.stephen.views;
+package com.stephen.view;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -113,29 +113,6 @@ public class CropView extends View {
         this.cropCallback = cropCallback;
     }
 
-    public void setLeftTopPoint(float leftTopPointX, float leftTopPointY) {
-        if (!isPointValid(leftTopPointX, leftTopPointY)) {
-            return;
-        }
-        leftTopPoint.set(leftTopPointX, leftTopPointY);
-        if (cropCallback != null) {
-            cropCallback.updatePoint(leftTopPointX, leftTopPointY, rightBottomPoint.x, rightBottomPoint.y, width, height);
-        }
-        invalidate();
-    }
-
-    public void setRightBottomPoint(float rightBottomX, float rightBottomY) {
-        if (!isPointValid(rightBottomX, rightBottomY)) {
-            return;
-        }
-        leftTopPoint.set(rightBottomX, rightBottomY);
-        if (cropCallback != null) {
-            cropCallback.updatePoint(leftTopPoint.x, leftTopPoint.y, rightBottomX, rightBottomY, width, height);
-        }
-        invalidate();
-    }
-
-
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (!isCropEnabled) {
@@ -169,27 +146,27 @@ public class CropView extends View {
         final float y = event.getY();
         switch (mTouchArea) {
             case LEFT_TOP:
-                if (isPointValid(x, y)) {
+                if (isMoveValid(x, y) && x <= rightBottomPoint.x - 2 * DEFAULT_TOUCH_SENSITIVE_AREA && y <= rightBottomPoint.y - 2 * DEFAULT_TOUCH_SENSITIVE_AREA) {
                     updatePointPosition(x, y, rightBottomPoint.x, rightBottomPoint.y);
                 }
                 break;
             case LEFT_BOTTOM:
-                if (isPointValid(x, y)) {
+                if (isMoveValid(x, y) && x <= rightBottomPoint.x - 2 * DEFAULT_TOUCH_SENSITIVE_AREA && y >= rightBottomPoint.y - 2 * DEFAULT_TOUCH_SENSITIVE_AREA) {
                     updatePointPosition(x, leftTopPoint.y, rightBottomPoint.x, y);
                 }
                 break;
             case RIGHT_BOTTOM:
-                if (isPointValid(x, y)) {
+                if (isMoveValid(x, y) && x >= leftTopPoint.x + 2 * DEFAULT_TOUCH_SENSITIVE_AREA && y >= leftTopPoint.y + 2 * DEFAULT_TOUCH_SENSITIVE_AREA) {
                     updatePointPosition(leftTopPoint.x, leftTopPoint.y, x, y);
                 }
                 break;
             case RIGHT_TOP:
-                if (isPointValid(x, y)) {
+                if (isMoveValid(x, y) && x >= leftTopPoint.x + 2 * DEFAULT_TOUCH_SENSITIVE_AREA && y <= rightBottomPoint.y - 2 * DEFAULT_TOUCH_SENSITIVE_AREA) {
                     updatePointPosition(leftTopPoint.x, y, x, rightBottomPoint.y);
                 }
                 break;
             case CENTER:
-                if (isPointValid(x, y)) {
+                if (isMoveValid(x, y)) {
                     float diffX = x - mLastX;
                     float diffY = y - mLastY;
                     final float[] validOffset = getValidOffset(diffX, diffY);
@@ -213,7 +190,7 @@ public class CropView extends View {
         float newLeftTopPointY = leftTopPoint.y + offsetY;
         float newRightBottomPointX = rightBottomPoint.x + offsetX;
         float newRightBottomPointY = rightBottomPoint.y + offsetY;
-        if (isPointValid(newLeftTopPointX, newLeftTopPointY) && isPointValid(newRightBottomPointX, newRightBottomPointY)) {
+        if (isMoveValid(newLeftTopPointX, newLeftTopPointY) && isMoveValid(newRightBottomPointX, newRightBottomPointY)) {
             return offset;
         } else {
             return getValidOffset(offsetX, offsetY);
@@ -226,7 +203,7 @@ public class CropView extends View {
         invalidate();
     }
 
-    private boolean isPointValid(float x, float y) {
+    private boolean isMoveValid(float x, float y) {
         return x >= 0 && y >= 0 && x <= width && y <= height;
     }
 
