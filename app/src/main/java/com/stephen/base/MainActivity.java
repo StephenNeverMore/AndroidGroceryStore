@@ -12,6 +12,7 @@ import android.view.View;
 
 import com.stephen.R;
 import com.stephen.aty.BubbleAty;
+import com.stephen.aty.CropActivity;
 import com.stephen.aty.HeartActivity;
 import com.stephen.aty.OpenTopActivity;
 import com.stephen.aty.RevealActivity;
@@ -79,4 +80,7 @@ public class MainActivity extends AppCompatActivity {
         startNewAty(this, RevealActivity.class);
     }
 
+    public void toCropAty(View view) {
+        startNewAty(this, CropActivity.class);
+    }
 }

@@ -61,6 +61,13 @@
                 android:textAllCaps="false"
                 android:text="Reveal ViewGroup" />
 
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="toCropAty"
+                android:textAllCaps="false"
+                android:text="Crop View" />
+
         </LinearLayout>
 
     </ScrollView>
