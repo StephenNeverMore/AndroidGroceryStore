@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">HelloWorld</string>
-    <string name="cmlocker_notification_entry">Open</string>
-    <string name="cmlocker_notification_delete">Delete</string>
+    <string name="app_name">AndroidGroceryStore</string>
+    <string name="notification_entry">Open</string>
+    <string name="notification_delete">Delete</string>
     <string name="acc_system_setting_description">Tap on the top right hand toggle to enable Hello World↗↗↗\\n\\nAttention: You may receive standard privacy warnings. There\\\'s no need to worry, no personal data will be collected.</string>
     <string name="android_store">Android Grocery Store</string>
 </resources>
