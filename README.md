@@ -19,6 +19,9 @@ an android project like a grocery store
 ## 扩散/收缩布局动画
 RevealFrameLayout RevealImageView
 
+## 自定义图片视频剪切View
+CropView 可拖拽、中心移动
+
 ![image](https://github.com/StephenNeverMore/AndroidGroceryStore/blob/master/gif/heartview.gif)
 
 ![image](https://github.com/StephenNeverMore/AndroidGroceryStore/blob/master/gif/currentAty.gif)
@@ -28,3 +31,5 @@ RevealFrameLayout RevealImageView
 ![image](https://github.com/StephenNeverMore/AndroidGroceryStore/blob/master/gif/bezier.gif)
 
 ![image](https://github.com/StephenNeverMore/AndroidGroceryStore/blob/master/gif/reveal.gif)
+
+![image](https://github.com/StephenNeverMore/AndroidGroceryStore/blob/master/gif/crop.gif)
