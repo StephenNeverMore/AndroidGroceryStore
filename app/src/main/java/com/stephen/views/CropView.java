@@ -1,4 +1,4 @@
-package com.stephen.view;
+package com.stephen.views;
 
 import android.content.Context;
 import android.graphics.Canvas;

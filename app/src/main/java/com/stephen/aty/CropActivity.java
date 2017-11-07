@@ -17,7 +17,6 @@ public class CropActivity extends AppCompatActivity implements CropView.CropCall
         setContentView(R.layout.activity_crop);
         cropView = (CropView) findViewById(R.id.crop_view);
         cropView.setCropCallback(this);
-        cropView.setLeftTopPoint(100, 100);
     }
 
     @Override
