@@ -58,7 +58,8 @@
         <activity android:name=".aty.WaveAty" />
         <activity android:name=".aty.BubbleAty" />
         <activity android:name=".aty.RevealActivity" />
-        <activity android:name=".aty.CropActivity"/>
+        <activity android:name=".aty.CropActivity" />
+        <activity android:name=".aty.AutoScrollActivity"></activity>
     </application>
 
 </manifest>

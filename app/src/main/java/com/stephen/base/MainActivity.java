@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.stephen.R;
+import com.stephen.aty.AutoScrollActivity;
 import com.stephen.aty.BubbleAty;
 import com.stephen.aty.CropActivity;
 import com.stephen.aty.HeartActivity;
@@ -82,5 +83,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void toCropAty(View view) {
         startNewAty(this, CropActivity.class);
+    }
+
+    public void toAutoScrollAty(View view) {
+        startNewAty(this, AutoScrollActivity.class);
     }
 }

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:layout_margin="4dp">
+
+    <com.stephen.views.AutoScrollImageView
+        android:id="@+id/scroll_image_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorAccent"
+        android:scaleType="matrix"
+        android:src="@drawable/wukong" />
+
+    <TextView
+        android:id="@+id/scroll_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:background="@drawable/item_bg"
+        android:text="@string/app_name"
+        android:textSize="30dp" />
+</FrameLayout>

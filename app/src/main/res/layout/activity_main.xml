@@ -68,6 +68,13 @@
                 android:textAllCaps="false"
                 android:text="Crop View" />
 
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="toAutoScrollAty"
+                android:textAllCaps="false"
+                android:text="Auto Scroll View" />
+
         </LinearLayout>
 
     </ScrollView>
