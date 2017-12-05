@@ -22,6 +22,9 @@ RevealFrameLayout RevealImageView
 ## 自定义图片视频剪切View
 CropView 可拖拽、中心移动
 
+## 自定义跟随RecyclerView上下滚动ImageView（仿知乎广告）
+ScrollImageView 跟随RecyclerView上下滚动
+
 ![image](https://github.com/StephenNeverMore/AndroidGroceryStore/blob/master/gif/heartview.gif)
 
 ![image](https://github.com/StephenNeverMore/AndroidGroceryStore/blob/master/gif/currentAty.gif)
@@ -33,3 +36,5 @@ CropView 可拖拽、中心移动
 ![image](https://github.com/StephenNeverMore/AndroidGroceryStore/blob/master/gif/reveal.gif)
 
 ![image](https://github.com/StephenNeverMore/AndroidGroceryStore/blob/master/gif/crop.gif)
+
+![image](https://github.com/StephenNeverMore/AndroidGroceryStore/blob/master/gif/scroll.gif)
